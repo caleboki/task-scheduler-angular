@@ -10,6 +10,9 @@ import { ButtonComponent } from './components/button/button.component';
 import { TasksComponent } from './components/tasks/tasks.component';
 import { TaskItemComponent } from './components/task-item/task-item.component';
 import { AddTaskComponent } from './components/add-task/add-task.component';
+import { AppRoutingModule } from './app-routing.module';
+import { AboutComponent } from './components/about/about.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 @NgModule({
@@ -19,13 +22,16 @@ import { AddTaskComponent } from './components/add-task/add-task.component';
     ButtonComponent,
     TasksComponent,
     TaskItemComponent,
-    AddTaskComponent
+    AddTaskComponent,
+    AboutComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
     FontAwesomeModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

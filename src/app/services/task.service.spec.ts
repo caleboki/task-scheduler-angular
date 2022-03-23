@@ -5,6 +5,7 @@ import { TaskService } from './task.service';
 
 describe('TaskService', () => {
   let service: TaskService;
+  let http: HttpClientTestingModule;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
