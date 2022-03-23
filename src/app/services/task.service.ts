@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable} from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {Task} from '../Task';
-import {TASKS} from '../mock-tasks';
 
 
 @Injectable({
@@ -9,10 +9,29 @@ import {TASKS} from '../mock-tasks';
 })
 export class TaskService {
 
-  constructor() { }
+  private apiUrl: string = 'http://localhost:4000/tasks';
+
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
+
+  constructor(private http: HttpClient) { }
 
   getTasks(): Observable<Task[]> {
-    const tasks = of(TASKS);
-    return tasks;
+    return this.http.get<Task[]>(this.apiUrl);
+  }
+
+  deleteTask(task: Task): Observable<Task> {
+    const url = `${this.apiUrl}/${task._id}`;
+    return this.http.delete<Task>(url);
+  }
+
+  updateTaskReminder(task: Task): Observable<Task> {
+    const url = `${this.apiUrl}/${task._id}`;
+    return this.http.patch<Task>(url, task, this.httpOptions);
+  }
+
+  addTask(task: Task): Observable<Task> {
+    return this.http.post<Task>(this.apiUrl, task, this.httpOptions);
   }
 }
